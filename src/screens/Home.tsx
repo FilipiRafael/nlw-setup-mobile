@@ -1,6 +1,6 @@
-import { useState, useEffect } from 'react';
+import { useState, useCallback } from 'react';
 import { View, Text, ScrollView, Alert } from "react-native";
-import { useNavigation } from '@react-navigation/native';
+import { useNavigation, useFocusEffect } from '@react-navigation/native';
 import dayjs from 'dayjs';
 
 import { api } from '../lib/axios';
@@ -26,6 +26,8 @@ export function Home() {
   const [loading, setLoading] = useState(true);
   const [summary, setSummary] = useState<SummaryProps | null>(null);
 
+  const { navigate } = useNavigation();
+
   async function fetchData() {
     try {
       setLoading(true);
@@ -39,11 +41,9 @@ export function Home() {
     }
   }
 
-  const { navigate } = useNavigation();
-
-  useEffect(() => {
+  useFocusEffect(useCallback(() => {
     fetchData();
-  }, []);
+  }, []));
 
   if (loading) {
     return <Loading />
@@ -85,7 +85,7 @@ export function Home() {
                     key={date.toISOString()}
                     date={date}
                     amountOfHabits={dayWithHabits?.amount}
-                    amountCompleted={dayWithHabits?.amount}
+                    amountCompleted={dayWithHabits?.completed}
                     onPress={() => navigate('habit', { date: date.toISOString() })}
                   />
                 )

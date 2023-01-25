@@ -32,10 +32,10 @@ export function HabitDay({
       className={clsx('rounded-lg border-2 m-1', {
         ['bg-zinc-900 border-zinc-800'] : amountAccomplisthedPercentage === 0,
         ['bg-violet-900 border-violet-700']: amountAccomplisthedPercentage > 0 && amountAccomplisthedPercentage < 20,
-        ['bg-violet-800 border-violet-600']: amountAccomplisthedPercentage > 20 && amountAccomplisthedPercentage < 40,
-        ['bg-violet-700 border-violet-500']: amountAccomplisthedPercentage > 40 && amountAccomplisthedPercentage < 60,
-        ['bg-violet-600 border-violet-500']: amountAccomplisthedPercentage > 60 && amountAccomplisthedPercentage < 80,
-        ['bg-violet-500 border-violet-400']: amountAccomplisthedPercentage > 80,
+        ['bg-violet-800 border-violet-600']: amountAccomplisthedPercentage >= 20 && amountAccomplisthedPercentage < 40,
+        ['bg-violet-700 border-violet-500']: amountAccomplisthedPercentage >= 40 && amountAccomplisthedPercentage < 60,
+        ['bg-violet-600 border-violet-500']: amountAccomplisthedPercentage >= 60 && amountAccomplisthedPercentage < 80,
+        ['bg-violet-500 border-violet-400']: amountAccomplisthedPercentage >= 80,
         ['border-white border-4']: isCurrentDay
       })}
       style={{ width: DAY_SIZE, height: DAY_SIZE }}
